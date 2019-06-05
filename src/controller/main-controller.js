@@ -14,7 +14,7 @@ class MainController {
     init() {
         this.window = new BrowserWindow({
             show: false,
-            width: 360,
+            width: 400,
             height: 500,
             frame: true,
             autoHideMenuBar: true,
@@ -27,15 +27,13 @@ class MainController {
         this.window.loadURL('https://pan.baidu.com/?lang=zh_CN')
 
         this.window.webContents.on('dom-ready', () => {
-            this.centerLogin()
             this.window.webContents.insertCSS(CssInjector.login)
             this.window.webContents.insertCSS(CssInjector.main)
             this.addFontAwesomeCDN()
             this.changeTitle()
             this.addToggleContactElement()
-
             this.addUnreadMessageListener()
-
+            this.cssInjectLoginDiv()
             this.show()
         })
 
@@ -50,10 +48,6 @@ class MainController {
         this.window.webContents.on('new-window', this.openInBrowser)
 
         session.defaultSession.webRequest.onCompleted({urls: [
-            'https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxinit*',
-            'https://wx2.qq.com/cgi-bin/mmwebwx-bin/webwxinit*',
-            'https://wx.qq.com/?&lang*',
-            'https://wx2.qq.com/?&lang*'
         ]},
             (details) => this.handleRequest(details)
         )
@@ -84,11 +78,7 @@ class MainController {
     }
 
     handleRequest(details) {
-        // console.log(details.url)
-        details.url.startsWith('https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxinit') && this.login()
-        details.url.startsWith('https://wx2.qq.com/cgi-bin/mmwebwx-bin/webwxinit') && this.login()
-        details.url.startsWith('https://wx.qq.com/?&lang') && this.logout()
-        details.url.startsWith('https://wx2.qq.com/?&lang') && this.logout()
+        details.url.startsWith('https://pan.baidu.com/api/report/user')&&this.login()
     }
 
     login() {
@@ -125,7 +115,8 @@ class MainController {
         `)
     }
 
-    centerLogin(){
+    /*inject login div css */
+    cssInjectLoginDiv(){
         this.window.webContents.executeJavaScript(`
             let login=document.querySelector("#login-container > div.login-main > .login-sdk-v4")
             login.style.cssText = 'width: 100%;height: 100%;position: fixed;vertical-align: top';
