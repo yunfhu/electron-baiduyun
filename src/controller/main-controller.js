@@ -79,17 +79,18 @@ class MainController {
 
     handleRequest(details) {
         details.url.startsWith('https://pan.baidu.com/api/report/user')&&this.login()
+        details.url.startsWith('https://pan.baidu.com/disk/cmsdata?do=piece')&&this.logout()
     }
 
     login() {
         this.window.hide()
-        this.window.setSize(1000, 670, true)
+        this.window.setSize(1000, 600, true)
         this.window.setResizable(true)
         this.window.show()
     }
 
     logout() {
-        this.window.setSize(380, 500, true)
+        this.window.setSize(400, 400, true)
     }
 
     addFontAwesomeCDN() {
