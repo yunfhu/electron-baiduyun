@@ -15,7 +15,7 @@ class MainController {
         this.window = new BrowserWindow({
             show: false,
             width: 400,
-            height: 500,
+            height: 400,
             frame: true,
             autoHideMenuBar: true,
             resizable: false,
@@ -33,7 +33,7 @@ class MainController {
             this.changeTitle()
             this.addToggleContactElement()
             this.addUnreadMessageListener()
-            this.cssInjectLoginDiv()
+            this.loginReDraw()
             this.show()
         })
 
@@ -116,10 +116,12 @@ class MainController {
     }
 
     /*inject login div css */
-    cssInjectLoginDiv(){
+    loginReDraw(){
         this.window.webContents.executeJavaScript(`
-            let login=document.querySelector("#login-container > div.login-main > .login-sdk-v4")
-            login.style.cssText = 'width: 100%;height: 100%;position: fixed;vertical-align: top';
+            let loginsdkv4=document.querySelector("#login-container > div.login-main > .login-sdk-v4");
+            loginsdkv4.style.cssText = 'width: 100%;height: 100%;position: fixed;vertical-align: top';
+            let loginmain=document.querySelector("#login-container > div.login-main");
+            loginmain.style.cssText = 'width: 1100px;height: 0;top: 0';
         `)
     }
 
