@@ -1,13 +1,14 @@
 {
-  "name": "electron-wechat",
-  "productName": "Freechat",
+  "name": "electron-baiduyun",
+  "productName": "BaiduYun",
   "version": "0.1.1",
-  "description": "Wechat desktop application",
+  "description": "BaiduYun desktop application",
   "main": "src/main.js",
   "scripts": {
     "start": "electron src/main.js",
     "pack": "electron-builder --dir",
-    "dist:linux": "electron-builder --linux deb",
+    "dist:linux": "electron-builder --linux x64",
+    "dist:deb": "electron-builder --linux deb",
     "dist:macOS": "electron-builder --mac",
     "postinstall": "electron-builder install-app-deps",
     "publish": "build -p always"
@@ -15,12 +16,12 @@
   "repository": "https://github.com/eNkru/electron-wechat",
   "keywords": [
     "Electron",
-    "Wechat",
-    "微信",
-    "微信客户端",
-    "微信桌面"
+    "BaiduYun",
+    "百度云",
+    "百度云客户端",
+    "百度云桌面"
   ],
-  "author": "Howard Ju <howard.ju@outlook.com>",
+  "author": "yunfhu <yunfei.hu.19910906@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "electron": "^4.0.0",
@@ -31,7 +32,7 @@
     "linux": {
       "category": "Network;Utility",
       "desktop": {
-        "StartupWMClass": "freechat"
+        "StartupWMClass": "YoudaoNote"
       },
       "target": [
         "AppImage",
@@ -43,5 +44,9 @@
         "dmg"
       ]
     }
+  },
+  "dependencies": {
+    "cnpm": "^6.1.0",
+    "electron-log": "^3.0.6"
   }
 }

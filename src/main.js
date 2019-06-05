@@ -4,7 +4,7 @@ const {
 const MainController = require('./controller/main-controller')
 const AppTrayController = require('./controller/app-tray-controller')
 
-class ElectronWechat {
+class BaiduYun {
   constructor() {
     this.mainController = null
     this.tray = null
@@ -65,4 +65,4 @@ class ElectronWechat {
   }
 }
 
-new ElectronWechat().init();
+new BaiduYun().init();
